@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>明汽租车-登录注册</title>
+    <style>
+        .head{
+            width:1500px;
+            height:80px;
+            background-color: gainsboro;
+        }
+        .logo{
+            width: 180px;
+            height:80px;
+            margin-left: 100px;
+            background:url("../../../static/images/login/logo.png") no-repeat center;
+            background-size: 100%;
+        }
+        .con_photo{
+            width:1500px;
+            height:600px;
+            background: url("../../../static/images/login/login-back.jpg") no-repeat center;
+            background-size: 100%;
+        }
+        .con-manage{
+            width:300px;
+            height:600px;
+            margin-left: 300px;
+            background-color: white;
+            position: relative;
+        }
+        .con-manage .func{
+            width:200px;
+            height:50px;
+            margin-left: 50px;
+            margin-top: 20px;
+            position: absolute;
+        }
+        .con-manage .func .func_l{
+            float: left;
+            font-family: 黑体;
+            font-size: 30px;
+            color:blue;
+            line-height: 50px;
+            margin-left: 10px;
+        }
+        .con-manage .func .func_l:hover{
+            cursor: pointer;
+        }
+        .con-manage .func i{
+            float: left;
+            font-family: 黑体;
+            font-size: 30px;
+            color:orange;
+            line-height: 50px;
+            margin-left: 15px;
+        }
+        .con-manage .func .func_r{
+            float: left;
+            font-family: 黑体;
+            font-size: 30px;
+            color:orange;
+            line-height: 50px;
+            margin-left: 20px;
+        }
+        .con-manage .func .func_r:hover{
+            cursor: pointer;
+        }
+        .con-manage .con-login{
+            margin-left: 50px;
+            margin-top: 90px;
+            width:200px;
+            height:400px;
+            border: 1px solid gainsboro;
+            position: absolute;
+        }
+        .con-manage .con-login .login-la{
+            width:150px;
+            height:30px;
+            margin-left: 25px;
+            font-size: 18px;
+            color: dodgerblue;
+            font-weight: 300;
+        }
+        .con-manage .con-login .login-user{
+            width:150px;
+            height:20px;
+            margin-left: 25px;
+        }
+        .func_sub{
+            width:50px;
+            height:30px;
+            margin-left: 25px;
+            color: brown;
+        }
+        .con-manage .con-register{
+            margin-left: 50px;
+            margin-top: 90px;
+            width:200px;
+            height:450px;
+            border: 1px solid gainsboro;
+            position: absolute;
+            display: none;
+        }
+        .con-manage .con-register .reg-la{
+            width:150px;
+            height:30px;
+            margin-left: 25px;
+            font-size: 18px;
+            color: dodgerblue;
+            font-weight: 300;
+        }
+        .con-manage .con-register .reg-user{
+            width:150px;
+            height:20px;
+            margin-left: 25px;
+        }
+    </style>
+</head>
+<body>
+<div class="head">
+    <div class="logo"></div>
+</div>
+<div class="content">
+    <div class="con_photo">
+        <div class="con-manage">
+            <div class="func">
+                <div class="func_l">登录</div><i>[]</i><div class="func_r">注册</div>
+            </div>
+            <div class="con-login">
+                <form id="flogin">
+{#                    <form action="{% url 'login' %}" method="post" id="flogin">#}
+                    <label for="login-user" class="login-la">账号</label>
+                    <input type="text" class="login-user" name="username" id="login_user" placeholder="请输入账号">
+                    <label for="login-pass" class="login-la">密码</label>
+                    <input type="password" class="login-user" name="password" id="login_pass" placeholder="请输入密码">
+                    <input type="button" name="login_sub" id="login_sub" class="func_sub" value="登录">
+                </form>
+            </div>
+            <div class="con-register">
+{#                <form action="{% url 'register' %}" method="post" id="fregister">#}
+                <form id="fregister">
+                    <label for="ruser" class="reg-la">账号</label>
+                    <input type="text" class="reg-user" name="username" id="ruser" placeholder="请输入账号">
+                    <label for="rname" class="reg-la">姓名</label>
+                    <input type="text" class="reg-user" name="name" id="rname" placeholder="请输入账号">
+                    <label for="rpass" class="reg-la">密码</label>
+                    <input type="password" class="reg-user" name="password" id="rpass" placeholder="请输入密码">
+                    <label class="reg-la">性别</label></form>&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="rsex" value="男">男
+                    <input type="radio" name="rsex" value="女">女
+                    <input type="radio" name="rsex" value="保密">保密
+                    <label for="ridentity" class="reg-la">身份证</label>
+                    <input type="text" class="reg-user" name="username" id="ridentity" placeholder="请输入身份证">
+                    <label for="rlevel" class="reg-la">等级</label><br/>&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="rlevel" id="rlevel" value="普通">普通<br>
+                    <label for="rphone" class="reg-la">电话</label>
+                    <input type="text" class="reg-user" name="phone" id="rphone" placeholder="请输入电话">
+                    <label for="rmail" class="reg-la">邮箱</label>
+                    <input type="text" class="reg-user" name="phone" id="rmail" placeholder="请输入邮箱">
+                    <input type="button" name="register_sub" id="register_sub" class="func_sub" value="注册">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../../static/js/jquery-3.3.1.js"></script>
+<script>
+    var fun_l=document.getElementsByClassName("func_l")[0];
+    var fun_r=document.getElementsByClassName("func_r")[0];
+    var con_login=document.getElementsByClassName("con-login")[0];
+    var con_register=document.getElementsByClassName("con-register")[0];
+    fun_l.onclick=function(){
+        fun_l.style['color']='blue';
+        fun_r.style['color']='orange';
+        con_login.style['display']='block';
+        con_register.style['display']='none';
+    }
+    fun_r.onclick=function(){
+        fun_l.style['color']='orange';
+        fun_r.style['color']='blue';
+        con_login.style['display']='none';
+        con_register.style['display']='block';
+    }
+    $(document).ready(function() {
+        $('#login_sub').click(function(){
+            var username = $("#login_user").val(); //定义变量
+            var password = $("#login_pass").val();
+            $.ajax({
+                url: 'login',
+                type: 'POST',
+                dataType: 'JSON',
+                data: {
+                        username: username, //服务端请求的数据，前者username代表django获取前端的变量名，后者username代表上面定义的变量名
+                        passwd: password,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function (arg){
+                    if (arg.log=='200') {
+                        window.location.href = '/renweb/base';
+                    }
+                    if (arg.log == '201') {
+                            alert("用户名或密码错误,请重新输入！");
+                            // window.location.reload()
+                            return false
+                    }
+                }
+            })
+        })
+    })
+    $(document).ready(function(){
+        $('#register_sub').click(function(){
+            var ruser = $("#ruser").val();
+            var rname = $("#rname").val();
+            var rpass = $("#rpass").val();
+            var rsex = $("input[name='rsex']:checked").val();
+            var ridentity = $("#ridentity").val();
+            var rlevel = $("input[name='rlevel']:checked").val();
+            var rphone = $("#rphone").val();
+            var rmail = $("#rmail").val();
+            $.ajax({
+                url: 'register',
+                type: 'POST',
+                dataType: 'JSON',
+                data: {
+                        ruser:ruser,
+                        rname:rname,
+                        rpass:rpass,
+                        rsex:rsex,
+                        ridentity:ridentity,
+                        rlevel:rlevel,
+                        rphone:rphone,
+                        rmail:rmail,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success:function(reg){
+                    if(reg.reg == '210') {
+                        alert("注册成功！");
+                        $("#fregister").reset();
+                    }
+                    if(reg.reg=='211'){
+                        alert("注册失败,账号已存在");
+                        $("#fregister").reset();
+                    }
+                    if(reg.reg=='212'){
+                        alert("注册失败,姓名与身份证已存在");
+                        $("#fregister").reset();
+                    }
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>

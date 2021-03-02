@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+        body{
+            background: url("../../../static/images/home/body.jpg") no-repeat;
+            background-size: 100%;
+        }
+        .back{
+            width:800px;
+            height:160px;
+            background-color: #faf520;
+            margin-left: 350px;
+        }
+        .head{
+            padding-left: 100px;
+            font-size: 36px;
+            font-family: 黑体;
+            color: #99bc0c;
+            width:700px;
+            height:100px;
+            line-height: 100px;
+            background-color: gainsboro;
+        }
+        .login{
+            width:115px;
+            height:25px;
+            margin-left: 330px;
+            background-color: dodgerblue;
+        }
+        .login:hover{
+            cursor: pointer;
+        }
+        .login a{
+            text-decoration: none;
+            list-style-type: none;
+            margin-left: 20px;
+            font-size: 18px;
+            font-weight: 500;
+            color: midnightblue;
+        }
+        .but{
+            padding-left: 115px;
+            font-size: 36px;
+            font-family: 黑体;
+            color: #2913bc;
+            width:685px;
+            height:60px;
+            line-height: 60px;
+            background-color: #29dc1a;
+        }
+        .background{
+            width:800px;
+            height: 400px;
+            margin-left: 350px;
+            background:url("../../../static/images/home/back1.jpg") no-repeat;
+            background-size:100%;
+        }
+    </style>
+</head>
+<body>
+<div class="background"></div>
+<div class="back">
+    <div class="head">
+        你好，欢迎来到明汽租赁有限网站
+    </div>
+    <div class="login" ><a href={% url "loto" %}>点击登录</a></div>
+    <div class="but">
+    软件1601 林长强 201606050136
+    </div>
+</div>
+<script>
+    var back=document.getElementsByClassName("background")[0];
+    var index=1;
+    function autoapply(){
+        time = setInterval(function(){
+            index++;
+            if (index > 3)index = 1;
+            back.style['background']='url("../../../static/images/home/back'+index+'.jpg") no-repeat';
+            back.style['background-size']='100%';
+        },3000);
+    }
+    autoapply();
+    $('.background').hover(function () {
+        clearInterval(time);
+    },autoapply);
+    var logint_to=document.getElementsByClassName("login")[0];
+    logint_to.onclick=function(){
+        window.location.href="login.html";
+    }
+</script>
+<script src="../../../static/js/jquery-3.3.1.js"></script>
+</body>
+</html>

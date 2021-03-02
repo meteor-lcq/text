@@ -1,0 +1,90 @@
+{% extends 'renweb/html/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {%  block css %}
+        <title>商务代价-司机</title>
+        <link href="/static/css/subdriv_css.css" type="text/css" rel="stylesheet"/>
+        <link href="/static/css/base.css" rel="stylesheet" type="text/css"/>
+    {% endblock %}
+</head>
+<body>
+{%  block content %}
+    <div class="driv_photo">
+        {% autoescape off %}
+            {{ driver.d_photo }}
+        {% endautoescape %}
+    </div>
+    <div class="driver_sub">
+        <p>司机名:&nbsp;&nbsp;&nbsp;{{ driver.d_name }}</p>
+        <p>联系电话:&nbsp;&nbsp;&nbsp;{{ driver.d_phone }}</p>
+        <p>地址:&nbsp;&nbsp;&nbsp;{{ driver.d_addr }}</p>
+        <p>星级:&nbsp;&nbsp;&nbsp;{{ driver.d_star }}</p>
+        <p>雇佣价格:&nbsp;&nbsp;&nbsp;{{ driver.d_price }}元/每天</p>
+        <p>经验:&nbsp;&nbsp;&nbsp;{{ driver.d_exprience }}</p>
+        <p>状态:&nbsp;&nbsp;&nbsp;{{ driver.d_state }}</p>
+        <p><a class="backa" href="base">返回</a></p>
+    </div>
+    <div class="driver_choose">
+        <form id="order_driver">
+            <label for="order_dri_id" class="order_car">司机id</label>
+            <input type="text" class="order_driv" name="order_dri_id" id="order_dri_id" readonly="readonly" value={{ driver.id }}><br>
+            <label for="order_car_sday" class="order_car">开始日期</label>
+            <input type="date" class="order_driv" name="order_dri_sday" id="order_dri_sday"><br>
+            <label for="order_car_fday" class="order_car">天数</label>
+            <input type="text" class="order_driv" name="order_dri_fday" id="order_dri_fday" placeholder="请输入结束日期"><br>
+            <input type="button" class="order_driv" name="order_dri_sub" id="order_dri_sub" value="立即预定">
+        </form>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="../../../static/js/jquery-3.3.1.js"></script>
+{#    <script src="../../../static/js/detailcar.js"></script>#}
+    <script>
+    $(function() {
+        //得到当前时间
+        var date_now = new Date();
+        //得到当前年份
+        var year = date_now.getFullYear();
+        //得到当前月份
+        //注：
+        //  1：js中获取Date中的month时，会比当前月份少一个月，所以这里需要先加一
+        //  2: 判断当前月份是否小于10，如果小于，那么就在月份的前面加一个 '0' ， 如果大于，就显示当前月份
+        var month = date_now.getMonth() + 1 < 10 ? "0" + (date_now.getMonth() + 1) : (date_now.getMonth() + 1);
+        //得到当前日子（多少号）
+        var date = date_now.getDate()+3 < 10 ? "0" + (date_now.getDate()+3) : (date_now.getDate()+3);
+        //设置input标签的min属性
+        $("#order_dri_sday").attr("min", year + "-" + month + "-" + date);
+    });
+    $(document).ready(function() {
+        $('#order_dri_sub').click(function(){
+            var drdate = $("#order_dri_sday").val(); //定义变量
+            var drday = $("#order_dri_fday").val();
+            var driverid=$("#order_dri_id").val();
+            $.ajax({
+                url: 'orderdriver',
+                type: 'POST',
+                dataType: 'JSON',
+                data: {
+                        drdate:drdate , //服务端请求的数据，前者username代表django获取前端的变量名，后者username代表上面定义的变量名
+                        drday: drday,
+                        driverid: driverid,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function (arg){
+                    if(arg.order=='201'){
+                        alert(arg.msg);
+                        window.location.href = '/renweb/base';
+                    }
+                    if(arg.order=='202'){
+                        alert(arg.msg);
+                    }
+                }
+            })
+        })
+    })
+    </script>
+{% endblock %}
+</body>
+</html>

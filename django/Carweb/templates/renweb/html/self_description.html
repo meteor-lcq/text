@@ -1,0 +1,28 @@
+{% extends 'renweb/html/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {%  block css %}
+        <title>关于我们</title>
+        <link href="/static/css/self_description.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/css/base.css" rel="stylesheet" type="text/css"/>
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+    <div class="self_description">
+        <div class="self-logo"></div>
+        <div class="self">明汽租赁</div>
+        <div class="self">致力于创建一个人人开好车的网站</div>
+        <div class="self">明汽租赁网站创建于2020年，作为一个新生的网站，有许多地方都需要改进，会努力做到最好</div>
+        <div class="self">地址：湖南科技学院一名学生的笔记本</div>
+        <div class="self">电话：13587896191（没有企业电话）</div>
+        <div class="self">邮编：425000</div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="../../../static/js/jquery-3.3.1.js"></script>
+{% endblock %}
+</body>
+</html>

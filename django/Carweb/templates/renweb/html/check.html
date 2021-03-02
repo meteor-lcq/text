@@ -1,0 +1,70 @@
+{% extends 'renweb/html/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {%  block css %}
+        <title>查看租车</title>
+        <link href="/static/css/check.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/css/base.css" rel="stylesheet" type="text/css"/>
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+    <div class="perinfo">
+        <p class="perinfofont">用户名：{{ log.acnum }}</p>
+        <p class="perinfofont">昵称：{{ log.name }}</p>
+        <p class="perinfofont">性别：{{ log.sex }}</p>
+        <p class="perinfofont">身份证：{{ log.identity_id }}</p>
+        <p class="perinfofont">等级：{{ log.level }}</p>
+        <p class="perinfofont">手机号码：{{ log.phone }}</p>
+        <p class="perinfofont">邮箱:{{ log.email }}</p>
+    </div>
+    <div class="orderinfo">
+        {% if have == True %}
+            <p class="orderinfofont">当前订单如下：</p>
+            <p class="orderinfofont">用户：{{ order.o_user }}</p>
+            <p class="orderinfofont">车名：{{ order.o_vehicle }}</p>
+            <p class="orderinfofont">车用：{{ order.o_vehicle_use }}</p>
+            <p class="orderinfofont">送车员：{{ order.o_send }}</p>
+            <p class="orderinfofont">下单时间：{{ order.o_time }}</p>
+            <p class="orderinfofont">租车开始日期：{{ order.o_time_to }}</p>
+            <p class="orderinfofont">租车时长:{{ order.o_day }}天</p>
+            <p class="orderinfofont">派车地址:{{ order.o_addr }}</p>
+            <p class="orderinfofont">金额：{{ order.o_money }}元</p>
+            <button type="button" id="order_finish" class="order_finish">完成</button>
+        {% else %}
+            <p class="orderinfofont">没有订单！可以去租辆车看看哦！</p>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="../../../static/js/jquery-3.3.1.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#order_finish').click(function () {
+                var finish = "ok";
+                $.ajax({
+                    url: 'check',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: {
+                        finish: finish,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+                    success: function (arg) {
+                        if (arg.finish == '201') {
+                            alert(arg.msg);
+                            window.location.href = '/renweb/check';
+                        }
+                        if (arg.finish == "202") {
+                            alert(arg.msg);
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,163 @@
+{#<!DOCTYPE html>#}
+{#<meta http-equiv='Content-type' content='text/htm'>#}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {%  block css %}
+    <title>首页</title>
+    <link href="/static/css/base.css" rel="stylesheet" type="text/css"/>
+    {% endblock %}
+</head>
+<body>
+<div class="substrate">
+    <div class="head">
+        <div class="logo"></div>
+        <div class="nav">
+            <a href={% url "base" %}>*首页*</a>
+            <a href={% url "ranking" %}>排名信息</a>
+            <a href="/renweb/news_in/1">新闻信息</a>
+            <a href={% url "self_desc" %}>关于我们</a>
+            <a href="/renweb/showcomment/1">评论</a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="left">
+            <div class="user">
+                <div class="name">欢迎，{{ log.name }}</div>
+                <div class="name_choose">
+                    <a href={% url "check" %}>查看租车</a>&nbsp;&nbsp;
+                    <a href={% url "dricheck" %}>查看代驾</a><br>
+                    <a href={% url "modify" %}>修改</a>&nbsp;&nbsp;
+                    <a href={% url "signout" %}>退出</a>
+                </div>
+            </div>
+            <div class="choose">
+                <div class="ch_oose">租车自驾</div>
+                <div class="ch_oose">婚庆租车</div>
+                <div class="ch_oose">会议用车</div>
+                <div class="ch_oose">商务代驾</div>
+            </div>
+        </div>
+        <div class="middle">
+            {% block content %}
+                <div class="instructions">
+                    <p>欢迎进入明汽租赁网站</p>
+                    <p>◁◁◁点击左侧查看相关车辆信息</p>
+                </div>
+            {% endblock %}
+        </div>
+        <div class="right">
+            <div class="right_l">
+                <div class="right_l_up" id="right_l_up">
+                    <div class="adver"></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <marquee behavior="scroll" direction="left" style="background-color: beige;">
+                        <sapn class="right_l_d">持续更新中！</sapn>
+                </marquee>
+            </div>
+            <div class="right_r"></div>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="btime">
+            <div class="hms"></div>
+            <div class="ymdw"></div>
+        </div>
+        <div class="comment">
+            {% block comment %}
+            <div class="com_write">
+                <form id="com_write">
+                    <label for="write_text" class="write_text_l">评论(最多20个字符)</label><br/>
+                    <input type="text" class="write_text" name="write_text" id="write_text" maxlength=20 /><br/>
+                    <input type="button" class="write_text_button" id="write_text_button" value="发布">
+                </form>
+            </div>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+<script src="../../../static/js/jquery-3.3.1.js"></script>
+<script>
+    var ch_oose=document.getElementsByClassName('ch_oose');
+    ch_oose[0].onclick=function(){
+        window.location.href = '/renweb/rentcar/1';
+    }
+    ch_oose[1].onclick=function(){
+        window.location.href = '/renweb/weddingrent/1';
+    }
+    ch_oose[2].onclick=function(){
+        window.location.href = '/renweb/conference_car/1';
+    }
+    ch_oose[3].onclick=function(){
+        window.location.href = '/renweb/com_driving/1';
+    }
+    /*轮播图*/
+    var right_l_up=document.getElementById('right_l_up');
+    var div=right_l_up.getElementsByTagName('div');
+    for(var iadv=0;iadv<div.length;iadv++){
+        div[iadv].style['background']='url("../../../static/images/advertisement/adver'+(iadv+1)+'.jpg") no-repeat';
+        div[iadv].style['background-size']='100%';
+    };
+    var index=0;
+    function autoapply(){
+        time = setInterval(function(){
+            index++;
+            if (index > 3){
+                index = 0;
+            }
+            $(div).eq(index).addClass('adver').fadeIn().siblings().fadeOut().removeClass('adver');
+        },3000);
+    }
+    autoapply();
+    function uptime(){
+        time = setInterval(function(){
+            var myDate = new Date();
+            myDate.getFullYear(); //获取完整的年份(4位,1970-????)
+            myDate.getMonth(); //获取当前月份(0-11,0代表1月)         // 所以获取当前月份是myDate.getMonth()+1;
+            myDate.getDate(); //获取当前日(1-31)
+            myDate.getDay(); //获取当前星期X(0-6,0代表星期天)
+            myDate.getHours(); //获取当前小时数(0-23)
+            myDate.getMinutes(); //获取当前分钟数(0-59)
+            myDate.getSeconds(); //获取当前秒数(0-59)
+            myDate.toLocaleDateString(); //获取当前日期
+            var myhms=myDate.toLocaleTimeString(); //获取当前时间
+            var myymdw=myDate.getFullYear()+"-"+myDate.getMonth()+"-"+
+                    myDate.getDate()+"-星期"+myDate.getDay()
+            myDate.toLocaleString( ); //获取日期与时间
+            $(".hms").html(myhms);
+            $(".ymdw").html(myymdw);
+        },1000);
+    }
+    uptime();
+    //录入评论
+    $(document).ready(function(){
+        $('#write_text_button').click(function(){
+            var com = $('#write_text').val(); //定义变量
+            $.ajax({
+                url: 'coent',
+                type: 'POST',
+                dataType: 'JSON',
+                data: {
+                        comtext:com,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(arg){
+                    if(arg.com=='201'){
+                        alert(arg.msg);
+                    }
+                    if(arg.com=='202'){
+                        alert(arg.msg);
+                    }
+                },error:function(xhr){alert("该页面无法评论")}
+            })
+        })
+    });
+</script>
+{% block script %}
+<script src="../../../static/js/jquery-3.3.1.js"></script>
+{% endblock %}
+</body>
+</html>

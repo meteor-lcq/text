@@ -1,0 +1,46 @@
+.content .middle{
+    width:800px;
+    height:500px;
+    background-color: #d1dcd4;
+    float: left;
+}
+.perinfo{
+    width:350px;
+    height:500px;
+    background: url("../../static/images/check/checkperinfo.jpg") no-repeat;
+    background-size: 102%;
+    float: left;
+}
+.perinfo .perinfofont{
+    padding-left: 25px;
+    height:30px;
+    font-size: 18px;
+    font-family:"HoloLens MDL2 Assets";
+    font-weight: 700;
+    color: #821330;
+}
+.dorderinfo{
+    float: left;
+    width:450px;
+    height:500px;
+    background: url("../../static/images/base/orderbackground.jpg") no-repeat;
+    background-size: 100%;
+}
+.dorderinfo .dorderinfofont{
+    padding-left: 25px;
+    height:25px;
+    font-size: 17px;
+    font-family:"HoloLens MDL2 Assets";
+    font-weight: 700;
+    color: #821330;
+}
+.dorderinfo .dorder_finish{
+    margin-left: 25px;
+    width:60px;
+    height:30px;
+    border:1px solid orange;
+    background-color: #ffe923;
+}
+.dorderinfo .dorder_finish:hover{
+    cursor: pointer;
+}

@@ -1,0 +1,68 @@
+{% extends 'renweb/html/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {%  block css %}
+        <title>会议用车</title>
+        <link href="/static/css/conference_car.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/css/base.css" rel="stylesheet" type="text/css"/>
+        <style>
+            .rentcar_base .pagination ul{
+                list-style: none;
+            }
+            .rentcar_base .pagination ul li{
+                border: 2px solid #765921;
+                width: 15px;
+                height: 23px;
+            }
+            .rentcar_base .pagination a{
+                text-decoration: none;
+                list-style-type: none;
+                font-size: 20px;
+                text-align: center;
+            }
+        </style>
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+    <div class="rentcar_base">
+        <table class="tab">
+            <tr>
+                <td>车名</td><td>车型</td><td>座位</td>
+                <td>每日</td><td>超时</td>
+                <td>押金</td><td>归属</td><td>操作</td>
+            </tr>
+            {% for car in page %}
+                <tr>
+                <td>{{ car.v_name }}</td><td>{{ car.v_type }}</td><td>{{ car.v_set }}</td>
+                <td>{{ car.v_price_day }}元/每天</td><td>{{ car.v_price_overtime }}元/每天</td>
+                <td>{{ car.v_cash_pledge }}元</td><td>{{ car.v_addr }}</td>
+                    <td><a href='/renweb/details_page?id={{ car.id }}' class="tab_a">查看</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="pagination">
+                <ul class="pagination">
+                {% if page.has_previous %}   # 判断当前页是否有上一页
+                    <li><a href="/renweb/conference_car/{{page.previous_page_number}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span></a></li>
+                {% endif %}
+                {% for num in page.paginator.page_range%}
+                    {%if pindex == page.number%}
+                        <li><a href="">{{ num }}</a></li>
+                    {%else%}
+                        <li><a href="/renweb/conference_car/{{num}}">{{ num }}</a></li>
+                    {%endif%}
+                 {% endfor %}
+                {% if page.has_next %}  {# 判断当前页是否有下一页#}
+                     <li><a href="/renweb/conference_car/{{page.next_page_number}}" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span></a></li>
+                  {% endif %}
+                </ul>
+        </div>
+    </div>
+{% endblock %}
+</body>
+</html>

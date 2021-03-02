@@ -1,0 +1,40 @@
+.news_in{
+    width:800px;
+    height:400px;
+    margin-top:50px;
+    background-color:white;
+    background: url("../../static/images/base/新闻.jpg") no-repeat;
+    background-size: 100%;
+}
+.news_in .newsintab{
+    margin-left: 70px;
+    text-align: center;
+}
+.news_in .newsintab td{
+    border: 1px solid black;
+}
+.news_in .newsintab .tab_a{
+    list-style-type: none;
+    text-decoration: none;
+    color: #0c0e0c;
+}
+.news_in .pagination ul{
+            list-style: none;
+}
+.news_in .pagination ul li{
+    border: 2px solid #b58f30;
+    width: 15px;
+    height: 23px;
+}
+.news_in .pagination a{
+    text-decoration: none;
+    list-style-type: none;
+    font-size: 20px;
+    text-align: center;
+}
+.news_in .pagination a:link{
+    color:black;
+}
+.news_in .pagination a:visited{
+    color:black
+}

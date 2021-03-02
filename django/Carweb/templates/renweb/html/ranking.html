@@ -1,0 +1,49 @@
+{% extends 'renweb/html/base.html' %}
+{#<!DOCTYPE html>#}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {%  block css %}
+        <title>排名信息</title>
+        <link href="/static/css/ranking.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/css/base.css" rel="stylesheet" type="text/css"/>
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+    <div class="ranking">
+        <div class="rankcar">
+            <div style="text-align: center;font-family: 黑体; font-size: 20px;">最受关注的租车排行前五种车辆</div>
+            <table class="tabrankcar">
+                <tr>
+                    <td>ID</td></td><td>车名</td><td>车型</td><td>座位</td><td>归属</td><td>次数</td>
+                </tr>
+                {% for car in rankcar %}
+                    <tr>
+                        <td>{{ car.id }}</td><td>{{ car.v_name }}</td><td>{{ car.v_type }}</td>
+                        <td>{{ car.v_set }}</td><td>{{ car.v_addr }}</td><td>{{ car.v_browse }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="rankdriver">
+            <div style="text-align: center;font-family: 黑体; font-size: 20px;">最受关注的司机排行前五名</div>
+            <table class="tabrankdriver">
+                <tr>
+                    <td>ID</td><td>名称</td><td>星级</td><td>经验</td><td>次数</td>
+                </tr>
+                {% for driver in rankdriver %}
+                    <tr>
+                    <td>{{ driver.id }}</td><td>{{ driver.d_name }}</td><td>{{ driver.d_star }}</td>
+                    <td>{{ driver.d_exprience }}</td><td>{{ driver.d_browse }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="../../../static/js/jquery-3.3.1.js"></script>
+{% endblock %}
+</body>
+</html>

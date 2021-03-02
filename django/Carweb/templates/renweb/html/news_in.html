@@ -1,0 +1,52 @@
+{% extends 'renweb/html/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {%  block css %}
+        <title>新闻</title>
+        <link href="/static/css/news_in.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/css/base.css" rel="stylesheet" type="text/css"/>
+    {% endblock %}
+
+</head>
+<body>
+{% block content %}
+    <div class="news_in">
+        <table class="newsintab">
+            <tr>
+                <td>标题</td><td>标签</td><td>日期</td><td>操作</td>
+            </tr>
+            {% for news in page %}
+                <tr>
+                <td>{{ news.title }}</td><td>{{ news.tag }}</td><td>{{ news.date }}</td>
+                <td><a href='/renweb/news_out?id={{ news.id }}' class="tab_a">查看</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="pagination">
+                <ul class="pagination">
+                {% if page.has_previous %}   # 判断当前页是否有上一页
+                    <li><a href="/renweb/news_in/{{page.previous_page_number}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span></a></li>
+                {% endif %}
+                {% for num in page.paginator.page_range%}
+                    {%if pindex == page.number%}
+                        <li><a href="">{{ num }}</a></li>
+                    {%else%}
+                        <li><a href="/renweb/news_in/{{num}}">{{ num }}</a></li>
+                    {%endif%}
+                 {% endfor %}
+                {% if page.has_next %}  {# 判断当前页是否有下一页#}
+                     <li><a href="/renweb/news_in/{{page.next_page_number}}" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span></a></li>
+                  {% endif %}
+                </ul>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="../../../static/js/jquery-3.3.1.js"></script>
+{% endblock %}
+</body>
+</html>

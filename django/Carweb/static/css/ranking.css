@@ -1,0 +1,28 @@
+.ranking{
+    width:800px;
+    height:500px;
+    background:url("../../static/images/base/ranking.jpg") no-repeat ;
+    background-size: 100%;
+}
+.ranking .rankcar{
+    width:800px;
+    height:250px;
+}
+.ranking .rankcar .tabrankcar{
+    margin:auto;
+    text-align: center;
+}
+.ranking .rankcar .tabrankcar td{
+    border: 1px solid black;
+}
+.ranking .rankdriver{
+    width:800px;
+    height:250px;
+}
+.ranking .rankdriver .tabrankdriver{
+    margin:auto;
+    text-align: center;
+}
+.ranking .rankdriver .tabrankdriver td{
+    border: 1px solid black;
+}

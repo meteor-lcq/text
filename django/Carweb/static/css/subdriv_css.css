@@ -1,0 +1,44 @@
+.content .middle{
+    width:800px;
+    height:500px;
+    background-color: #d1dcd4;
+    float: left;
+}
+.content .middle .driv_photo{
+    width:134px;
+    height:500px;
+    float: left;
+    background-color: #ddfcff;
+}
+.content .middle .driver_sub{
+    width:349px;
+    height:500px;
+    float: left;
+    border-left: 1px solid black;
+    background-color: #ddfcff;
+}
+.content .middle .driver_sub p{
+    color: #a4afa7;
+    font-family: "Adobe 宋体 Std L";
+    font-size: 18px;
+}
+.content .middle .driver_sub .backa{
+    text-decoration: none;
+    list-style-type: none;
+    color: #af281f;
+    font-family: "Adobe 宋体 Std L";
+    font-size: 18px;
+}
+.content .middle .driver_choose{
+    width:315px;
+    height:500px;
+    float: left;
+    border-left: 1px solid blue;
+    background-color:#ddfcff;
+}
+.content .middle .driver_choose .order_driv{
+    width:289px;
+    height:40px;
+    font-size: 18px;
+    margin-top: 10px;
+}

@@ -1,0 +1,118 @@
+.substrate{
+    width:1500px;
+    height:740px;
+    border:1px solid blue;
+}
+.substrate .head{
+    width:1500px;
+    height:70px;
+    background-color: aliceblue;
+}
+.substrate .head .logo{
+    width:130px;
+    height:70px;
+    margin-left: 200px;
+    background: url("../images/base/logo.png") no-repeat center;
+    background-size: 100%;
+}
+.content{
+    width:1500px;
+    height:500px;
+}
+.content .left{
+    width:230px;
+    height:500px;
+    float: left;
+    background-color: #99bc0c;
+}
+.content .left .user{
+    width:230px;
+    height:100px;
+    background-color: #fa8f16;
+}
+.content .left .user .name{
+    width:230px;
+    height:60px;
+    font-size: 30px;
+    line-height: 60px;
+    font-family: 微软雅黑;
+    text-align: center;
+    color: #0d0b82;
+}
+.content .left .user .name_choose{
+    width:230px;
+    height:38px;
+    border-top: 2px solid black;
+}
+.content .left .user .name_choose a{
+    font-size: 18px;
+    line-height: 38px;
+    font-family: 微软雅黑;
+    color: #eaede9;
+    list-style-type: none;
+    text-decoration: none;
+}
+.content .left .choose{
+    width:230px;
+    height: 400px;
+    background-color: #faf520;
+}
+.content .left .choose .ch_oose{
+    width:228px;
+    height:48px;
+    border:1px solid black;
+    font-family: "Adobe 宋体 Std L";
+    font-size: 28px;
+    line-height: 48px;
+    text-align: center;
+    color: white;
+    background-color: saddlebrown;
+}
+.content .left .choose .ch_oose:hover{
+    cursor: pointer;
+}
+/*中心内容设计*/
+.content .middle{
+    width:800px;
+    height:500px;
+    background-color: #d1dcd4;
+    float: left;
+}
+.content .middle .c_photo{
+    width:210px;
+    height:500px;
+    float: left;
+    background-color: white;
+}
+.content .middle .c_detail{
+    width:299px;
+    height:500px;
+    float: left;
+    border-left: 1px solid black;
+    background-color: #ddfcff;
+}
+.content .middle .c_detail p{
+    color: #a4afa7;
+    font-family: "Adobe 宋体 Std L";
+    font-size: 18px;
+}
+.content .middle .c_detail .backa{
+    text-decoration: none;
+    list-style-type: none;
+    color: #af281f;
+    font-family: "Adobe 宋体 Std L";
+    font-size: 18px;
+}
+.content .middle .c_choose{
+    width:289px;
+    height:500px;
+    float: left;
+    border-left: 1px solid blue;
+    background-color:#ddfcff;
+}
+.content .middle .c_choose .order_car{
+    width:289px;
+    height:40px;
+    font-size: 18px;
+    margin-top: 10px;
+}

@@ -1,0 +1,81 @@
+{% extends 'renweb/html/base.html' %}
+{#<!DOCTYPE html>#}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {%  block css %}
+        <title>评论</title>
+        <link href="/static/css/comment_show.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/css/base.css" rel="stylesheet" type="text/css"/>
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+     <div class="comments">
+         {% for comment in page %}
+             <p class="comments_p">
+                 <span>{{ comment.username }}</span>
+                 <span>{{ comment.date }}</span>
+                 <span>{{ comment.text }}</span>
+             </p>
+         {% endfor %}
+        <div class="pagination">
+                <ul class="pagination">
+                {% if page.has_previous %}   # 判断当前页是否有上一页
+                    <li><a href="/renweb/comment_show/{{page.previous_page_number}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span></a></li>
+                {% endif %}
+                {% for num in page.paginator.page_range%}
+                    {%if pindex == page.number%}
+                        <li><a href="">{{ num }}</a></li>
+                    {%else%}
+                        <li><a href="/renweb/comment_show/{{num}}">{{ num }}</a></li>
+                    {%endif%}
+                 {% endfor %}
+                {% if page.has_next %}  {# 判断当前页是否有下一页
+                     <li><a href="/renweb/comment_show/{{page.next_page_number}}" aria-label="Next">
+                          <span aria-hidden="true">&raquo;</span></a></li>
+                  {% endif %}
+                </ul>
+        </div>
+    </div>
+{% endblock %}
+{#{% block comment %}#}
+{#    <div class="com_write">#}
+{#        <form id="com_write">#}
+{#            <label for="write_text" class="write_text_l">评论(最多20个字符)</label><br/>#}
+{#            <input type="text" class="write_text" name="write_text" id="write_text" maxlength=20 /><br/>#}
+{#            <input type="button" class="write_text_button" id="write_text_button" value="发布">#}
+{#        </form>#}
+{#    </div>#}
+{#{% endblock %}#}
+{#{% block script %}#}
+{#    <script src="../../../static/js/jquery-3.3.1.js"></script>#}
+{#    <script>#}
+{#    //录入评论#}
+{#    $(document).ready(function(){#}
+{#        $('#write_text_button').click(function(){#}
+{#            var com = $('#write_text').val(); //定义变量#}
+{#            $.ajax({#}
+{#                url: 'coent',#}
+{#                type: 'POST',#}
+{#                dataType: 'JSON',#}
+{#                data: {#}
+{#                        comtext:com,#}
+{#                        csrfmiddlewaretoken: '{{ csrf_token }}'#}
+{#                },#}
+{#                success: function(arg){#}
+{#                    if(arg.com=='201'){#}
+{#                        alert(arg.msg);#}
+{#                    }#}
+{#                    if(arg.com=='202'){#}
+{#                        alert(arg.msg);#}
+{#                    }#}
+{#                },error:function(xhr){alert(xhr.responseText)}#}
+{#            })#}
+{#        })#}
+{#    });#}
+{#    </script>#}
+{#{% endblock %}#}
+</body>
+</html>

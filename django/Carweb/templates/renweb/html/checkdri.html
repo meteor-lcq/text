@@ -1,0 +1,68 @@
+{% extends 'renweb/html/base.html' %}
+{#<!DOCTYPE html>#}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {%  block css %}
+        <title>查看代驾</title>
+        <link href="/static/css/check_d.css" rel="stylesheet" type="text/css"/>
+        <link href="/static/css/base.css" rel="stylesheet" type="text/css"/>
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+    <div class="perinfo">
+        <p class="perinfofont">用户名：{{ log.acnum }}</p>
+        <p class="perinfofont">昵称：{{ log.name }}</p>
+        <p class="perinfofont">性别：{{ log.sex }}</p>
+        <p class="perinfofont">身份证：{{ log.identity_id }}</p>
+        <p class="perinfofont">等级：{{ log.level }}</p>
+        <p class="perinfofont">手机号码：{{ log.phone }}</p>
+        <p class="perinfofont">邮箱:{{ log.email }}</p>
+    </div>
+    <div class="dorderinfo">
+        {% if have == True %}
+            <p class="dorderinfofont">当前订单如下：</p>
+            <p class="dorderinfofont">用户：{{ dorder.do_user }}</p>
+            <p class="dorderinfofont">司机id：{{ dorder.do_drivid }}</p>
+            <p class="dorderinfofont">司机名称：{{ dorder.do_driver }}</p>
+            <p class="dorderinfofont">下单时间：{{ dorder.do_time}}</p>
+            <p class="dorderinfofont">代驾开始日期：{{ dorder.do_time_to }}</p>
+            <p class="dorderinfofont">代驾时长:{{ dorder.do_day }}天</p>
+            <p class="dorderinfofont">金额：{{ dorder.do_money }}元</p>
+            <button type="button" id="dorder_finish" class="dorder_finish">完成</button>
+        {% else %}
+            <p class="dorderinfofont">没有订单！可以请人代驾看看哦！</p>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="../../../static/js/jquery-3.3.1.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dorder_finish').click(function () {
+                var finish = "ok";
+                $.ajax({
+                    url: 'checkdri',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: {
+                        finish: finish,
+                        csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+                    success: function (arg) {
+                        if (arg.finish == '201') {
+                            alert(arg.msg);
+                            window.location.href = '/renweb/check_d';
+                        }
+                        if (arg.finish == "202") {
+                            alert(arg.msg);
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+{% endblock %}
+</body>
+</html>

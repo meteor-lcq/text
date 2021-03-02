@@ -1,0 +1,38 @@
+.comments{
+    width:800px;
+    height:400px;
+    margin-top:50px;
+    background-color:bisque;
+    /*background: url("../../static/images/base/评论.jpg") no-repeat;*/
+    /*background-size: 100%;*/
+}
+.comments .comments_p{
+    height:30px;
+    padding-left: 20px;
+}
+.comments .comments_p span{
+    margin-left: 40px;
+    font-size: 24px;
+    line-height: 30px;
+    font-family: 微软雅黑;
+}
+.comments .pagination ul{
+    list-style: none;
+}
+.comments .pagination ul li{
+    border: 2px solid #b58f30;
+    width: 15px;
+    height: 23px;
+}
+.comments .pagination a{
+    text-decoration: none;
+    list-style-type: none;
+    font-size: 20px;
+    text-align: center;
+}
+.comments .pagination a:link{
+    color:black;
+}
+.comments .pagination a:visited{
+    color:black
+}

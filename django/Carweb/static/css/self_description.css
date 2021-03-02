@@ -1,0 +1,22 @@
+.self_description{
+    width:800px;
+    height:500px;
+    background: url("../../static/images/base/self_description.jpg") no-repeat;
+    background-size: 100%;
+}
+.self_description .self-logo{
+    width:180px;
+    height:90px;
+    background: url("../../static/images/base/logo.png") no-repeat;
+    background-size: 100%;
+    margin-left: 150px;
+    margin-bottom: 5px;
+}
+.self_description .self{
+    width:500px;
+    height:50px;
+    font-family: 微软雅黑B;
+    font-size: 17px;
+    margin-left: 150px;
+    margin-bottom: 5px;
+}

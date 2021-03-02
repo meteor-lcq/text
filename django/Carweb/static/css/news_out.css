@@ -1,0 +1,38 @@
+.news_out{
+    width:800px;
+    height:500px;
+    background-color: #f6fae6;
+}
+.news_out .title{
+    width:800px;
+    height:50px;
+    text-align: center;
+    line-height: 50px;
+    font-family: 黑体;
+    font-size: 22px;
+}
+.news_out .tag{
+    width:800px;
+    height:25px;
+    text-align: center;
+    line-height: 25px;
+    font-family: 黑体;
+    font-size: 16px;
+}
+.news_out .content{
+    width:600px;
+    height:325px;
+    margin-left: 100px;
+    font-family: "Adobe 宋体 Std L";
+    font-size: 16px;
+}
+.news_out .backchoose{
+    width:60px;
+    height:30px;
+    margin-left: 150px;
+    font-family: 微软雅黑;
+    font-size: 17px;
+}
+.news_out .backchoose:hover{
+    cursor: pointer;
+}
